@@ -33,7 +33,15 @@ endif
 ifeq ($(NDEBUG),1)
 OPT_FLAGS := -O2 -DNDEBUG
 else
-OPT_FLAGS := -O0 -g -DDEBUG -fno-omit-frame-pointer
+SAN ?= "address,undefined,leak"
+OPT_FLAGS := -O0 \
+	     -g \
+	     -fno-omit-frame-pointer \
+	     -fsanitize=$(SAN) \
+	     -fsanitize-address-use-after-scope \
+	     -fstack-protector-strong \
+             -Wextra \
+             -DDEBUG
 endif
 
 ifeq ($(LTO),1)

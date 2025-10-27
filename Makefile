@@ -49,7 +49,15 @@ UGID_USE_RWLOCK ?= 0
 ifdef NDEBUG
 OPT_FLAGS := -O2 -DNDEBUG
 else
-OPT_FLAGS := -O0 -g -fno-omit-frame-pointer -DDEBUG
+SAN ?= "address,undefined,leak"
+OPT_FLAGS := -O0 \
+	     -g \
+	     -fno-omit-frame-pointer \
+	     -fsanitize=$(SAN) \
+	     -fsanitize-address-use-after-scope \
+	     -fstack-protector-strong \
+             -Wextra \
+             -DDEBUG
 endif
 
 ifdef STATIC
