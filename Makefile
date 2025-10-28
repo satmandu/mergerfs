@@ -57,6 +57,7 @@ OPT_FLAGS := -O0 \
 	     -fsanitize-address-use-after-scope \
 	     -fstack-protector-strong \
              -Wextra \
+	     -Wno-unused-parameter \
              -DDEBUG
 endif
 

@@ -41,6 +41,7 @@ OPT_FLAGS := -O0 \
 	     -fsanitize-address-use-after-scope \
 	     -fstack-protector-strong \
              -Wextra \
+	     -Wno-unused-parameter \
              -DDEBUG
 endif
 
@@ -68,7 +69,6 @@ INSTALLMAN1DIR ?= $(DESTDIR)$(MAN1DIR)
 BUILDDIR := build
 
 SRC_C = \
-	lib/buffer.c \
 	lib/crc32b.c \
 	lib/fuse_opt.c \
 	lib/fuse_session.c \
